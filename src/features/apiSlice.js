@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const testApi = createApi({
-  reducerPath: "testApi-RP",
+export const unsplashAPI = createApi({
+  reducerPath: "unsplashAPI-RP",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://jsonplaceholder.typicode.com/",
+    baseUrl: "https://api.unsplash.com/",
     prepareHeaders: (headers) => {
       headers.set("Content-Type", "application/json");
       headers.set("Authorization", process.env.REACT_APP_API_KEY)
@@ -12,13 +12,10 @@ export const testApi = createApi({
   }),
   
   endpoints: (builder) => ({
-    getUsers: builder.query({
-      query: () => "users",
-    }),
-    getUser: builder.query({
-      query: (id) => `https://api.unsplash.com/search/photos?page=1&query=${id}`
+    getPhotos: builder.query({
+      query: (term) => `search/photos?page=1&query=${term}`
     })
   }),
 });
 
-export const { useGetUsersQuery, useGetUserQuery } = testApi;
+export const { useGetPhotosQuery, useLazyGetPhotosQuery } = unsplashAPI;

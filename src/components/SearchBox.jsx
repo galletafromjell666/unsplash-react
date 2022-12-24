@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { useGetUsersQuery, useGetUserQuery } from "../features/apiSlice";
+import { useGetPhotosQuery } from "../features/apiSlice";
 const SearchBox = () => {
   const [test1, setTest1] = useState("");
   const [name, setName] = useState("");
+
   const {
-    data: allUsersData,
+    data: singleUserData,
     isLoading,
-    isSuccess,
     isError,
-  } = useGetUsersQuery();
-  const { data: singleUserData } = useGetUserQuery(test1, { skip: !test1 });
-  console.log(allUsersData);
+    isSuccess,
+  } = useGetPhotosQuery(test1, { skip: !test1 });
+
   console.log(singleUserData);
 
   if (isLoading) {
@@ -22,9 +22,8 @@ const SearchBox = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('submit')
+    console.log("submit");
     setTest1(name);
-  
   };
 
   return (
@@ -43,17 +42,9 @@ const SearchBox = () => {
         </form>
       </div>
       Sucess!!
-      {isSuccess && (
-        <div>
-          {allUsersData.map((u) => {
-            return <h1 key={u.id}>{`name: ${u.name} email: ${u.email}`}</h1>;
-          })}
-        </div>
-      )}
       <br />
       <br />
       <br />
-
       <button
         onClick={() => {
           setTest1(1);
@@ -61,9 +52,11 @@ const SearchBox = () => {
       >
         BUTTON TEST 1
       </button>
-
+      {singleUserData &&
+        singleUserData.results.map((el) => {
+          return <img src={el.urls.thumb} alt={el.description}></img>;
+        })}
       {singleUserData && <div>{JSON.stringify(singleUserData)}</div>}
-     
     </div>
   );
 };
