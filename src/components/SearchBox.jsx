@@ -26,6 +26,7 @@ const SearchBox = () => {
     setTest1(name);
   
   };
+
   return (
     <div>
       <div>
@@ -60,7 +61,7 @@ const SearchBox = () => {
       >
         BUTTON TEST 1
       </button>
-      
+
       {singleUserData && <div>{JSON.stringify(singleUserData)}</div>}
      
     </div>
