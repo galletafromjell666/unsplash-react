@@ -28,7 +28,7 @@ const SearchBox = () => {
     console.log("submit");
     setTest1(name);
   };
-console.log(`page = ${page}`)
+console.log(`page = ${page }`)
   return (
     <div>
       <div>
@@ -60,18 +60,21 @@ console.log(`page = ${page}`)
         singleUserData.results.map((el) => {
           return <img src={el.urls.thumb} alt={el.description}></img>;
         })} */}
-      {false && (
+      {singleUserData && (
+        <div className="container">
         <MasonryInfiniteScroller
-          hasMore={false}
+        className="masonry"
+          hasMore={page < 4}
           loadMore={()=> {
             console.log('loadMore');setPage(page+1)}}
         >
-          {singleUserData.results.map((el) => (
-            <div key={el.id}>
+          {cardData.map((el) => (
+            <div className="card" key={el.id} style={{height: "1600px", width: '500px'}}>
               <img src={el.urls.thumb} alt={el.description}></img>
             </div>
           ))}
         </MasonryInfiniteScroller>
+        </div>
       )}
     </div>
   );
