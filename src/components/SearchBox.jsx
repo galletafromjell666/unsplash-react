@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useGetPhotosQuery } from "../features/apiSlice";
+import { useGetPhotosQuery, use} from "../features/apiSlice";
 import MasonryInfiniteScroller from "react-masonry-infinite";
 const SearchBox = () => {
   const [test1, setTest1] = useState("");
@@ -11,11 +11,12 @@ const SearchBox = () => {
     isLoading,
     isError,
     isSuccess,
+    isFetching,
+    refetch,
   } = useGetPhotosQuery({ test1, page }, { skip: !test1 });
 
-  console.log(singleUserData);
   const cardData = singleUserData?.results ?? [];
-  console.log(`cardData final = `, cardData)
+  console.log(`cardData final = `, cardData);
   if (isLoading) {
     return <h1>Loading... owo</h1>;
   }
@@ -27,10 +28,12 @@ const SearchBox = () => {
     event.preventDefault();
     console.log("submit");
     setTest1(name);
+    setPage(1);
   };
-console.log(`page = ${page }`)
+  console.log(`page = ${page}`);
   return (
     <div>
+      {isFetching && <h1>isFetching</h1>}
       <div>
         <form onSubmit={handleSubmit}>
           <label>
@@ -50,7 +53,7 @@ console.log(`page = ${page }`)
       <br />
       <button
         onClick={() => {
-          setPage(page + 1);
+          refetch();
         }}
       >
         BUTTON TEST 1
@@ -62,18 +65,23 @@ console.log(`page = ${page }`)
         })} */}
       {singleUserData && (
         <div className="container">
-        <MasonryInfiniteScroller
-        className="masonry"
-          hasMore={page < 4}
-          loadMore={()=> {
-            console.log('loadMore');setPage(page+1)}}
-        >
-          {cardData.map((el) => (
-            <div className="card" key={el.id} style={{height: "1600px", width: '500px'}}>
-              <img src={el.urls.thumb} alt={el.description}></img>
-            </div>
-          ))}
-        </MasonryInfiniteScroller>
+          <MasonryInfiniteScroller
+            className="masonry"
+            hasMore={page < 4}
+            loadMore={() => {
+              (isLoading || isFetching) || setPage(page + 1);
+            }}
+          >
+            {cardData.map((el) => (
+              <div
+                className="card"
+                key={el.id}
+                style={{ height: "350px", width: "500px" }}
+              >
+                <img src={el.urls.thumb} alt={el.description}></img>
+              </div>
+            ))}
+          </MasonryInfiniteScroller>
         </div>
       )}
     </div>

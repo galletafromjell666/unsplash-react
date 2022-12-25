@@ -13,12 +13,26 @@ export const unsplashAPI = createApi({
 
   endpoints: (builder) => ({
     getPhotos: builder.query({
-      query: ({ test1:term, page }) => `search/photos?page=${page}&query=${term}`,
+      query: ({ test1: term, page }) =>
+        `search/photos?page=${page}&query=${term}`,
       serializeQueryArgs: ({ endpointName }) => {
         return endpointName;
       },
-      merge: (currentCache, newItems) => {
-        currentCache.results.push(...newItems.results);
+      transformResponse: (response, meta, arg) => {
+        if (!("term" in response)) {
+          response.term = arg.test1;
+        }
+        console.log(`response`, response);
+        return response;
+      },
+
+      merge: (currentCache, newItems, {arg}) => {
+        if(currentCache.term !== arg.test1){
+          currentCache.results = newItems.results
+        }else{
+          currentCache.results.push(...newItems.results);
+        }
+        
       },
       forceRefetch({ currentArg, previousArg }) {
         return currentArg !== previousArg;
