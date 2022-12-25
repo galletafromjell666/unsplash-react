@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useGetPhotosQuery } from "../features/apiSlice";
+import MasonryInfiniteScroller from "react-masonry-infinite";
 const SearchBox = () => {
   const [test1, setTest1] = useState("");
+  const [page, setPage] = useState(1);
   const [name, setName] = useState("");
 
   const {
@@ -9,10 +11,11 @@ const SearchBox = () => {
     isLoading,
     isError,
     isSuccess,
-  } = useGetPhotosQuery(test1, { skip: !test1 });
+  } = useGetPhotosQuery({ test1, page }, { skip: !test1 });
 
   console.log(singleUserData);
-
+  const cardData = singleUserData?.results ?? [];
+  console.log(`cardData final = `, cardData)
   if (isLoading) {
     return <h1>Loading... owo</h1>;
   }
@@ -25,7 +28,7 @@ const SearchBox = () => {
     console.log("submit");
     setTest1(name);
   };
-
+console.log(`page = ${page}`)
   return (
     <div>
       <div>
@@ -47,16 +50,29 @@ const SearchBox = () => {
       <br />
       <button
         onClick={() => {
-          setTest1(1);
+          setPage(page + 1);
         }}
       >
         BUTTON TEST 1
       </button>
+      {/*
       {singleUserData &&
         singleUserData.results.map((el) => {
           return <img src={el.urls.thumb} alt={el.description}></img>;
-        })}
-      {singleUserData && <div>{JSON.stringify(singleUserData)}</div>}
+        })} */}
+      {false && (
+        <MasonryInfiniteScroller
+          hasMore={false}
+          loadMore={()=> {
+            console.log('loadMore');setPage(page+1)}}
+        >
+          {singleUserData.results.map((el) => (
+            <div key={el.id}>
+              <img src={el.urls.thumb} alt={el.description}></img>
+            </div>
+          ))}
+        </MasonryInfiniteScroller>
+      )}
     </div>
   );
 };
