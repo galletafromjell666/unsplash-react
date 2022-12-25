@@ -15,8 +15,7 @@ const SearchBox = () => {
     refetch,
   } = useGetPhotosQuery({ test1, page }, { skip: !test1 });
 
-  const cardData = singleUserData?.results ?? [];
-  console.log(`cardData final = `, cardData);
+  console.log(`cardData final = `, singleUserData);
   if (isLoading) {
     return <h1>Loading... owo</h1>;
   }
@@ -53,17 +52,17 @@ const SearchBox = () => {
       <br />
       <button
         onClick={() => {
-          refetch();
+          setPage(page+1)
         }}
       >
         BUTTON TEST 1
       </button>
-      {/*
+      
       {singleUserData &&
         singleUserData.results.map((el) => {
           return <img src={el.urls.thumb} alt={el.description}></img>;
-        })} */}
-      {singleUserData && (
+        })} 
+      {false && (
         <div className="container">
           <MasonryInfiniteScroller
             className="masonry"
@@ -72,7 +71,7 @@ const SearchBox = () => {
               (isLoading || isFetching) || setPage(page + 1);
             }}
           >
-            {cardData.map((el) => (
+            {singleUserData.results.map((el) => (
               <div
                 className="card"
                 key={el.id}

@@ -19,20 +19,19 @@ export const unsplashAPI = createApi({
         return endpointName;
       },
       transformResponse: (response, meta, arg) => {
-        if (!("term" in response)) {
           response.term = arg.test1;
-        }
         console.log(`response`, response);
         return response;
       },
 
       merge: (currentCache, newItems, {arg}) => {
         if(currentCache.term !== arg.test1){
-          currentCache.results = newItems.results
-        }else{
+          console.log(`new search term!!`)
+          return newItems
+        }else{console.log(`merging!!`)
           currentCache.results.push(...newItems.results);
+          return currentCache
         }
-        
       },
       forceRefetch({ currentArg, previousArg }) {
         return currentArg !== previousArg;
