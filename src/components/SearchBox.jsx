@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { useGetPhotosQuery, use} from "../features/apiSlice";
+import React, { useState, useEffect } from "react";
+import { useGetPhotosQuery } from "../features/apiSlice";
 import MasonryInfiniteScroller from "react-masonry-infinite";
 const SearchBox = () => {
   const [test1, setTest1] = useState("");
   const [page, setPage] = useState(1);
   const [name, setName] = useState("");
+  const [result, setResult] = useState(false);
 
   const {
     data: singleUserData,
@@ -12,10 +13,14 @@ const SearchBox = () => {
     isError,
     isSuccess,
     isFetching,
-    refetch,
   } = useGetPhotosQuery({ test1, page }, { skip: !test1 });
 
-  console.log(`cardData final = `, singleUserData);
+  useEffect(() => {
+    setResult(true)
+  }, [singleUserData]);
+
+  //forcing update state
+  console.log(`Data = `, singleUserData);
   if (isLoading) {
     return <h1>Loading... owo</h1>;
   }
@@ -27,12 +32,14 @@ const SearchBox = () => {
     event.preventDefault();
     console.log("submit");
     setTest1(name);
+    setResult(false)
     setPage(1);
   };
   console.log(`page = ${page}`);
   return (
     <div>
       {isFetching && <h1>isFetching</h1>}
+      {isSuccess && <h1>isSuccess</h1>}
       <div>
         <form onSubmit={handleSubmit}>
           <label>
@@ -46,29 +53,31 @@ const SearchBox = () => {
           <input type="submit" />
         </form>
       </div>
-      Sucess!!
       <br />
       <br />
       <br />
       <button
         onClick={() => {
-          setPage(page+1)
+          setResult(!result);
         }}
       >
         BUTTON TEST 1
       </button>
-      
-      {singleUserData &&
+      {/* 
+       {singleUserData &&
         singleUserData.results.map((el) => {
           return <img src={el.urls.thumb} alt={el.description}></img>;
         })} 
-      {false && (
+      */}
+
+      {isSuccess && result && (
         <div className="container">
           <MasonryInfiniteScroller
+          sizes={[{ columns: 1, gutter: 20 }, { mq: '768px', columns: 2, gutter: 20 }, { mq: '1024px', columns: 3, gutter: 20 }]}
             className="masonry"
             hasMore={page < 4}
             loadMore={() => {
-              (isLoading || isFetching) || setPage(page + 1);
+              isLoading || isFetching || setPage(page + 1);
             }}
           >
             {singleUserData.results.map((el) => (

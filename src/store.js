@@ -1,4 +1,4 @@
-import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 // import { productsApi } from "./features/apiSlice";
 import {unsplashAPI} from './features/apiSlice'
 export const store = configureStore({
