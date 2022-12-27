@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { DiGithubBadge } from "react-icons/di";
+import { FaUnsplash } from "react-icons/fa";
 
 const SearchBar = ({ currentTerm, onChange }) => {
   const [usrInput, setUsrInput] = useState("");
@@ -14,11 +16,13 @@ const SearchBar = ({ currentTerm, onChange }) => {
 
   return (
     <div className="bg-gray-100 py-4">
-      <div className="flex items-center">
-        <form className="flex space-x-1" onSubmit={handleSubmit}>
+      <div className="flex  justify-between">
+        <FaUnsplash className="text-[3.1rem] ml-6"/>
+        <h1 className="text-xl w-[150px] mt-3 ml-4">Unsplash API</h1>
+        <form className="flex space-x-1 w-full justify-center" onSubmit={handleSubmit}>
           <input
             type="text"
-            className="block w-full px-4 py-2 text-slate-800 bg-gray-300 border rounded-full focus:border-rose-900/30 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+            className="block w-3/5 px-4 py-2 text-slate-800 bg-gray-300 border rounded-full focus:border-rose-900/30 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
             placeholder="Search..."
             value={usrInput}
             onChange={(e) => setUsrInput(e.target.value)}
@@ -41,6 +45,7 @@ const SearchBar = ({ currentTerm, onChange }) => {
             </svg>
           </button>
         </form>
+        <DiGithubBadge className="text-[3.1rem] mr-6"/>
       </div>
     </div>
   );
