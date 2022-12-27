@@ -9,7 +9,7 @@ const MasonryScroller = ({ responseData, page, setPage }) => {
   };
 
   return (
-    <div className="flex justify-center ">
+    <div className="flex justify-center pt-12">
       <MasonryInfiniteScroller
         sizes={[
           { columns: 1, gutter: 20 },

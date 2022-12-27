@@ -32,10 +32,14 @@ const UnsplashSearch = () => {
   }
   console.log(responseData);
   return (
-    <div >
+    <div>
       <SearchBar currentTerm={searchTerm} onChange={handleChange} />
-      <h1>searchterm = {searchTerm}</h1>
-      <h1>page = {page}</h1>
+      {responseData && (
+        <div className="bg-gray-100  py-4 pl-4">
+          <h1 className="text-4xl font-bold">{responseData.term}</h1>
+          <h2 className="text-2xl">Photos: {responseData.total > 1000 ? Math.round(responseData.total/1000) + "K" : responseData.total }</h2>
+        </div>
+      )}
 
       {responseData && result && (
         <MasonryScroller
