@@ -2,28 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
+.bg-gradient-custom {
+  background: hsla(312, 77%, 86%, 1);
+
+  background: linear-gradient(
+    90deg,
+    hsla(312, 77%, 86%, 1) 0%,
+    hsla(220, 61%, 79%, 1) 100%
+  );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(312, 77%, 86%, 1) 0%,
+    hsla(220, 61%, 79%, 1) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(312, 77%, 86%, 1) 0%,
+    hsla(220, 61%, 79%, 1) 100%
+  );
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#F7C0EC", endColorstr="#A7BDEA", GradientType=1 );
+}
+
 .masonry {
-    margin: 0 auto;
+  margin: 0 auto;
+}
+
+.card {
+  width: 296px;
+  box-shadow: rgba(0, 0, 0, 0.14902) 0px 2px 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.container {
+  background: rgb(155, 34, 34);
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  padding-top: 32px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 1;
   }
-  
-  .card {
-    width: 296px;
-    box-shadow: rgba(0, 0, 0, 0.14902) 0px 2px 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  99% {
+    opacity: 0;
   }
-  
-  .card > h2 {
-    font-size: 6em;
-    color: rgb(99, 96, 96);
-    margin: 1.6em 0;
+  100% {
+    z-index: -10;
   }
-  
-  .container {
-    
-    background: rgb(193, 193, 193);
-    padding-bottom: 16px;
-    margin-bottom: 16px;
-    padding-top: 32px;
-  }
+}
+
+.fade-animation {
+  animation: fadeIn 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}

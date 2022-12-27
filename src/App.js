@@ -1,16 +1,16 @@
-import SearchBox from "./components/SearchBox";
+//import Results from "./components/Results";
 import { store } from "./store";
 import { Provider } from "react-redux";
 import { ApiProvider } from "@reduxjs/toolkit/query/react";
 import { unsplashAPI } from "./features/apiSlice";
+import UnsplashSearch from "./features/UnsplashSearch";
 
 function App() {
   return (
     <Provider store={store}>
       <ApiProvider api={unsplashAPI}>
-      <div className="App">
-        <h1 className="text-3xl font-bold underline">Hello world!</h1>
-        <SearchBox />
+      <div className="App w-full min-h-screen max-h-fit bg-gradient-custom bg-no-repeat bg-cover bg-center">
+        <UnsplashSearch/>
       </div>
       </ApiProvider>
     </Provider>
