@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MasonryScroller from "../components/MasonryScroller";
+import NavBar from "../components/NavBar";
 import SearchBar from "../components/SearchBar";
 import { useGetPhotosQuery } from "../features/apiSlice";
 const UnsplashSearch = () => {
@@ -33,7 +34,7 @@ const UnsplashSearch = () => {
   console.log(responseData);
   return (
     <div>
-      <SearchBar currentTerm={searchTerm} onChange={handleChange} />
+      <NavBar currentTerm={searchTerm} onChange={handleChange}/>
       {responseData && (
         <div className="bg-gray-100  py-4 pl-4">
           <h1 className="text-4xl font-bold">{responseData.term}</h1>

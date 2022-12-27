@@ -17,11 +17,12 @@ const Image = ({
   const generateRandom = () => Math.floor(Math.random() * 10);
   return (
     <div
-      className="card"
+      className="card rounded-xl"
       key={id}
       style={{ width: "500px", height: (height / 5) }}
     >
       <img
+      className="rounded-xl"
       onClick={()=>{console.log("click")}}
       loading="lazy"
         style={{ width: "100%", height: "100%",objectFit:"cover" }}
@@ -29,14 +30,14 @@ const Image = ({
         onLoad={() => {
           setTimeout(() => {
             setLoaded(true);
-          }, generateRandom() * 120);
+          }, generateRandom() * 70);
         }}
         alt={alt_description}
       />
 
       <div className={isLoaded ? "fade-animation" : ""} style={{ position: 'absolute',width: "100%", height: "100%" }}>
       <Blurhash
-          style={{ width: "100%", height: "100%"}}
+          style={{ width: "100%", height: "100%",}}
           hash={blur_hash}
           resolutionX={32}
           resolutionY={32}

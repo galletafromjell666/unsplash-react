@@ -9,7 +9,7 @@ function App() {
   return (
     <Provider store={store}>
       <ApiProvider api={unsplashAPI}>
-      <div className="App w-full min-h-screen max-h-fit bg-gradient-custom bg-no-repeat bg-cover bg-center">
+      <div className="App w-full min-h-screen max-h-fit bg-gradient-custom bg-no-repeat bg-cover bg-center pb-12">
         <UnsplashSearch/>
       </div>
       </ApiProvider>
