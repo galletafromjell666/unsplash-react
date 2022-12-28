@@ -90,8 +90,12 @@ export default function NavBar({onChange }) {
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
               <li className="text-gray-600 ">
              <div className="flex flex-row space-x-6 grow justify-center">
+              <a href="https://github.com/galletafromjell666" target="_blank" rel="noopener noreferrer">
              <DiGithubBadge className="text-[3.1rem] hover:text-stone-400"/>
+             </a>
+             <a href="https://www.linkedin.com/in/gioaguirre664/" target="_blank" rel="noopener noreferrer"> 
               <FaLinkedin className="text-[3.1rem] hover:text-stone-400"/>
+              </a>
              </div>
               </li>
             </ul>
