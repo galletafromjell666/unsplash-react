@@ -20,7 +20,6 @@ const MasonryScroller = ({ responseData, page, setPage }) => {
     };
   }, []);
   //finish width
-
   const loadMore = () => {
     setTimeout(() => {
       setPage(page + 1);

@@ -1,27 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 .bg-gradient-custom {
-background: #F3F4F6;
-background: -webkit-linear-gradient(top, #F3F4F6, #9EA093);
-background: -moz-linear-gradient(top, #F3F4F6, #9EA093);
-background: linear-gradient(to bottom, #F3F4F6, #9EA093);
-}
-
-
-.card {
-  width: 296px;
-  box-shadow: rgba(0, 0, 0, 0.14902) 0px 2px 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: #f3f4f6;
+  background: -webkit-linear-gradient(top, #f3f4f6, #9ea093);
+  background: -moz-linear-gradient(top, #f3f4f6, #9ea093);
+  background: linear-gradient(to bottom, #f3f4f6, #9ea093);
 }
 
 @keyframes fadeIn {
   0% {
     opacity: 1;
-    border-radius: 0px
+    border-radius: 0px;
   }
   99% {
     opacity: 0;

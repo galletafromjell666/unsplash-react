@@ -1,15 +1,17 @@
-import { useState,useEffect } from "react";
+import { useState,useRef } from "react";
 import { FaUnsplash,FaSearch,FaLinkedin } from "react-icons/fa";
 import { DiGithubBadge } from "react-icons/di";
 
-export default function NavBar({ currentTerm, onChange }) {
+export default function NavBar({onChange }) {
+  const prevSearchTerm = useRef(undefined);
   const [navbar, setNavbar] = useState(false);
   const [usrInput, setUsrInput] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(currentTerm);
-    if (usrInput !== "" || usrInput === currentTerm) {
-      console.log("submited");
+    if (usrInput !== "" && prevSearchTerm.current !== usrInput && usrInput.trim().length !== 0) {
+      prevSearchTerm.current = usrInput
+      setUsrInput("")
+      //console.log("submited");
       onChange(usrInput);
     }
   };
@@ -87,7 +89,7 @@ export default function NavBar({ currentTerm, onChange }) {
           >
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
               <li className="text-gray-600 ">
-             <div className="flex flex-row space-x-2">
+             <div className="flex flex-row space-x-6 grow justify-center">
              <DiGithubBadge className="text-[3.1rem] hover:text-stone-400"/>
               <FaLinkedin className="text-[3.1rem] hover:text-stone-400"/>
              </div>
