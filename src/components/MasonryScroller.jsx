@@ -35,7 +35,7 @@ const MasonryScroller = ({ responseData, page, setPage }) => {
           { mq: "690px", columns: 2, gutter: 20 },
           { mq: "1024px", columns: 3, gutter: 30 },
         ]}
-        hasMore={page < 4}
+        hasMore={responseData.results.length < responseData.total}
         loadMore={loadMore}
         loader={
           <div key={0} className="flex items-center justify-center my-12">
