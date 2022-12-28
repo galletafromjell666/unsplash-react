@@ -1,9 +1,10 @@
-import { useState } from "react";
-import { FaUnsplash } from "react-icons/fa";
+import { useState,useEffect } from "react";
+import { FaUnsplash,FaSearch,FaLinkedin } from "react-icons/fa";
+import { DiGithubBadge } from "react-icons/di";
+
 export default function NavBar({ currentTerm, onChange }) {
   const [navbar, setNavbar] = useState(false);
   const [usrInput, setUsrInput] = useState("");
-
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(currentTerm);
@@ -13,8 +14,8 @@ export default function NavBar({ currentTerm, onChange }) {
     }
   };
   return (
-    <nav className="w-full bg-gray-100 py-2">
-      <div className="justify-between grow px-4 mx-auto w-full md:items-center md:flex md:px-8">
+    <nav className="w-full bg-transparent py-2">
+      <div className="justify-between grow px-2 mx-auto w-full md:items-center md:flex md:px-8">
         <div className="grow">
           <div className="flex items-center flex-row grow justify-between py-3 md:py-5">
             <div className="flex flex-row grow">
@@ -23,32 +24,18 @@ export default function NavBar({ currentTerm, onChange }) {
               </div>
               <div className="grow">
                 <form
-                  className="flex grow space-x-1 w-full justify-center px-8"
+                  className="flex grow space-x-1 w-full justify-center px-2 md:px-8 md:space-x-2"
                   onSubmit={handleSubmit}
                 >
                   <input
                     type="text"
-                    className="block w-full px-4 py-2 text-slate-800 bg-gray-300 border rounded-full focus:border-rose-900/30 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                    className="block w-full px-4 py-2 text-slate-800 bg-gray-300 border rounded-full  focus:border-fuchsia-100 focus:ring-fuchsia-100 focus:outline-none focus:ring focus:ring-opacity-40"
                     placeholder="Search..."
                     value={usrInput}
                     onChange={(e) => setUsrInput(e.target.value)}
                   />
                   <button className="px-4 text-white bg-gray-500/50 rounded-full ">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-5 h-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                        onClick={handleSubmit}
-                      />
-                    </svg>
+                   <FaSearch/>
                   </button>
                 </form>
               </div>
@@ -56,7 +43,7 @@ export default function NavBar({ currentTerm, onChange }) {
 
             <div className="md:hidden">
               <button
-                className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
+                className=" py-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border md:p-2"
                 onClick={() => setNavbar(!navbar)}
               >
                 {navbar ? (
@@ -99,8 +86,11 @@ export default function NavBar({ currentTerm, onChange }) {
             }`}
           >
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-              <li className="text-gray-600 hover:text-blue-600">
-                <a href="javascript:void(0)">Home</a>
+              <li className="text-gray-600 ">
+             <div className="flex flex-row space-x-2">
+             <DiGithubBadge className="text-[3.1rem] hover:text-stone-400"/>
+              <FaLinkedin className="text-[3.1rem] hover:text-stone-400"/>
+             </div>
               </li>
             </ul>
           </div>

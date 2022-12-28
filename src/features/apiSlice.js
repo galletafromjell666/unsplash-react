@@ -20,7 +20,7 @@ export const unsplashAPI = createApi({
       },
       transformResponse: (response, meta, arg) => {
         response.term = arg.searchTerm;
-        // console.log(`response`, response);
+        console.log(`response`, response, 'meta', meta);
         return response;
       },
 

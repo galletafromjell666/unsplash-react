@@ -3,32 +3,12 @@
 @tailwind utilities;
 
 .bg-gradient-custom {
-  background: hsla(312, 77%, 86%, 1);
-
-  background: linear-gradient(
-    90deg,
-    hsla(312, 77%, 86%, 1) 0%,
-    hsla(220, 61%, 79%, 1) 100%
-  );
-
-  background: -moz-linear-gradient(
-    90deg,
-    hsla(312, 77%, 86%, 1) 0%,
-    hsla(220, 61%, 79%, 1) 100%
-  );
-
-  background: -webkit-linear-gradient(
-    90deg,
-    hsla(312, 77%, 86%, 1) 0%,
-    hsla(220, 61%, 79%, 1) 100%
-  );
-
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#F7C0EC", endColorstr="#A7BDEA", GradientType=1 );
+background: #F3F4F6;
+background: -webkit-linear-gradient(top, #F3F4F6, #9EA093);
+background: -moz-linear-gradient(top, #F3F4F6, #9EA093);
+background: linear-gradient(to bottom, #F3F4F6, #9EA093);
 }
 
-.masonry {
-  margin: 0 auto;
-}
 
 .card {
   width: 296px;
@@ -36,14 +16,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-
-.container {
-  background: rgb(155, 34, 34);
-  padding-bottom: 16px;
-  margin-bottom: 16px;
-  padding-top: 32px;
 }
 
 @keyframes fadeIn {
